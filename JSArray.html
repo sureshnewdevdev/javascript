@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Arrays</title>
+</head>
+<body>
+  <h2>Array Manipulation Example</h2>
+  <p id="arrayDemo"></p>
+
+  <script>
+    const fruits = ["Apple", "Banana", "Mango"];
+    fruits.push("Orange");  // Add an element
+    fruits.pop();           // Remove the last element
+
+    document.getElementById("arrayDemo").innerText = `Updated Array: ${fruits.join(", ")}`;
+  </script>
+</body>
+</html>

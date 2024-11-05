@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple JavaScript Example</title>
+</head>
+<body>
+  <h1>Welcome to the JavaScript Demo!</h1>
+  <marquee behavior="" direction="top"> <p>Enter your age:</p>
+  <input type="number" id="ageInput" placeholder="Enter your age">
+  <button onclick="checkAge()">Submit</button>
+   </marquee>
+  <p id="resultMessage"></p>
+
+  <script>
+    function checkAge() {
+      // Get the value from the input field
+      const age = document.getElementById("ageInput").value;
+
+      // Check if the age meets the condition and display a message
+      let message;
+      if (age >= 18) {
+        message = "You are eligible to vote!";
+      } else {
+        message = "You are not old enough to vote yet.";
+      }
+      // Display the message in the paragraph element
+      document.getElementById("resultMessage").textContent = message;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Functions</title>
+</head>
+<body>
+  <h2>JavaScript Function Example</h2>
+  <p>Enter two numbers:</p>
+  <input type="number" id="num1" placeholder="First Number">
+  <input type="number" id="num2" placeholder="Second Number">
+  <button onclick="addNumbers()">Add</button>
+  <p id="functionResult"></p>
+
+  <script>
+    function addNumbers() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      document.getElementById("functionResult").innerText = `Sum: ${num1 + num2}`;
+    }
+  </script>
+</body>
+</html>

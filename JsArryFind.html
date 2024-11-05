@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array.find()</title>
+</head>
+<body>
+  <h2>Array.find() Example</h2>
+  <p id="findDemo"></p>
+
+  <script>
+    const numbers = [1, 5, 10, 15];
+    const found = numbers.find(num => num > 8);
+    document.getElementById("findDemo").innerText = `First number greater than 8: ${found}`;
+  </script>
+</body>
+</html>

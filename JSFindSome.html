@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array.some()</title>
+</head>
+<body>
+  <h2>Array.some() Example</h2>
+  <p id="someDemo"></p>
+
+  <script>
+    const numbers = [1, 5, 10, 15];
+    const hasLargeNumber = numbers.some(num => num > 8);
+    document.getElementById("someDemo").innerText = `Does the array contain numbers greater than 8? ${hasLargeNumber}`;
+  </script>
+</body>
+</html>
