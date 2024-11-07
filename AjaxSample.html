@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple AJAX Example</title>
+    <style>
+        #result {
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>AJAX Example</h1>
+    <p>Click the button below to fetch data from the server:</p>
+    
+    <!-- Button to trigger AJAX request -->
+    <button onclick="loadData()">Fetch Data</button>
+    
+    <!-- Element to display the result -->
+    <div id="result"></div>
+
+    <script>
+        // JavaScript function to load data using AJAX
+        function loadData() {
+            // Create a new XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
+
+            // Configure it: GET-request for the URL /data.json (or any API endpoint)
+            xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
+
+            // Set up the function to execute when the request completes
+            xhr.onreadystatechange = function () {
+                // Check if the request is complete (readyState 4) and was successful (status 200)
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Parse the JSON response
+                    const data = JSON.parse(xhr.responseText);
+
+                    // Display the result in the #result div
+                    document.getElementById("result").innerHTML = `
+                        <h3>Data Fetched:</h3>
+                        <p><strong>Title:</strong> ${data.title}</p>
+                        <p><strong>Body:</strong> ${data.body}</p>
+                    `;
+                }
+            };
+
+            // Send the AJAX request
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

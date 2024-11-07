@@ -11,7 +11,9 @@
 
   <script>
     const numbers = Array.of(1, 2, 3, 4);
-    document.getElementById("ofDemo").innerText = `Array of numbers: ${numbers}`;
+    numbers.push("Apple");
+    numbers.push("Mango");
+    document.getElementById("ofDemo").innerHTML = `<h1>Array of numbers: ${numbers}</h1>`;
   </script>
 </body>
 </html>

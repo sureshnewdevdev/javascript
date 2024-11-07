@@ -11,10 +11,20 @@
 
   <script>
     const fruits = ["Apple", "Banana", "Mango"];
+    // fruits =[];
     fruits.push("Orange");  // Add an element
-    fruits.pop();           // Remove the last element
 
-    document.getElementById("arrayDemo").innerText = `Updated Array: ${fruits.join(", ")}`;
+    // document.getElementById("arrayDemo").innerText = `Updated Array: ${fruits.join(", ")}`;
+
+    fruits.pop();           // Remove the last element
+    fruits.shift();            // Removes the first element
+
+
+    const mixedArray = [42, "Hello", true, { name: "Alice" }, [1, 2, 3], null, undefined];
+    console.log(mixedArray);
+
+     document.getElementById("arrayDemo").innerText = `<h1>Updated Array: ${fruits.join(", ")}</h1>`;
   </script>
 </body>
 </html>
+
