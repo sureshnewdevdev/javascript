@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department API - CRUD Operations</title>
+</head>
+<body>
+    <h1>Department API - CRUD Operations</h1>
+
+    <h2>Add or Update Department</h2>
+    <form id="departmentForm">
+        <label for="deptId">Department ID:</label>
+        <input type="number" id="deptId" name="deptId" required><br><br>
+
+        <label for="deptName">Department Name:</label>
+        <input type="text" id="deptName" name="deptName" required><br><br>
+
+        <button type="button" onclick="sendRequest('POST')">POST Department</button>
+        
+    </form>
+
+    <label id="responseMessage" style="color: green;"></label>
+
+    <h2>View All Departments</h2>
+    <button type="button" onclick="fetchAllDepartments()">Get All Departments</button>
+
+    <div id="departmentsList"></div>
+
+    <script>
+        const apiUrl = 'https://localhost:7209/api/Departments';
+
+        function displayMessage(message, isError = false) {
+            const responseLabel = document.getElementById("responseMessage");
+            responseLabel.style.color = isError ? "red" : "green";
+            responseLabel.textContent = message;
+        }
+
+        function sendRequest(method) {
+            const deptId = document.getElementById("deptId").value;
+            const deptName = document.getElementById("deptName").value;
+            
+            const data = {
+                deptId: parseInt(deptId),
+                deptName: deptName
+            };
+
+            fetch(apiUrl, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayMessage(`${method} Success: ${JSON.stringify(data)}`);
+                fetchAllDepartments(); // Refresh the list after successful operation
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                displayMessage(`Error: ${error.message}`, true);
+            });
+        }
+
+        function deleteDepartment() {
+            const deptId = document.getElementById("deptId").value;
+            if (!deptId) {
+                displayMessage("Please enter Department ID to delete", true);
+                return;
+            }
+
+            fetch(`${apiUrl}/${deptId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+                displayMessage(`DELETE Success: Department ID ${deptId} deleted`);
+                fetchAllDepartments(); // Refresh the list after deletion
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                displayMessage(`Error: ${error.message}`, true);
+            });
+        }
+
+        function fetchAllDepartments() {
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Request failed with status ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayDepartments(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    displayMessage(`Error: ${error.message}`, true);
+                });
+        }
+
+        function displayDepartments(departments) {
+            const departmentsList = document.getElementById("departmentsList");
+            departmentsList.innerHTML = "<h3>Departments:</h3>";
+            departmentsList.innerHTML += departments.map(dept => `
+                <p>ID: ${dept.deptId}, Name: ${dept.deptName}</p>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <button type="button" onclick="sendRequest('PUT')">PUT Department</button>
+        <button type="button" onclick="deleteDepartment()">DELETE Department</button> -->

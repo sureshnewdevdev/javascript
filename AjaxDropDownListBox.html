@@ -26,6 +26,7 @@
 
     <script>
         $(document).ready(function() {
+            alert('Ready is working');
             // Fetch Department data from API on page load
             $.ajax({
                 url: "https://localhost:7209/api/Departments",
@@ -34,7 +35,7 @@
                     console.log(departments);
                     // Populate dropdown with department data
                     departments.forEach(function(dept) {
-                        $('#deptId').append(`<option value="${dept.deptId}">${dept.deptName}</option>`);
+                        $('#deptId').append(`<option value="${dept.deptId}"'>${dept.deptName}</option>`);
                     });
                 },
                 error: function() {
